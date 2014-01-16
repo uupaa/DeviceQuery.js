@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.devicequery.js",
-  "version":        "0.8.1",
+  "version":        "0.8.0",
   "description":    "Device query function.",
   "url":            "https://github.com/uupaa/DeviceQuery.js",
   "keywords":       ["device", "spec", "query", "util", "uupaa"],
@@ -12,6 +12,7 @@
     "uupaa.help.js": ">= 0.8.1",
     "uupaa.test.js": ">= 0.8.0",
     "uupaa.task.js": ">= 0.8.0",
+    "uupaa.spec.js": ">= 0.8.0",
     "uupaa.device.js": ">= 0.8.0"
   },
   "lib":            "./lib/",

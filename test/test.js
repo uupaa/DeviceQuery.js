@@ -9,7 +9,7 @@ new Test().add([
     ]).run();
 
 function testDevice(next) {
-    var spec = Device();
+    var spec = Device( Spec() );
 
     console.log("testDevice ok: " + spec.DEVICE.ID);
     next && next.pass();
