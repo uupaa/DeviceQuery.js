@@ -6,7 +6,12 @@ new Test().add([
         testDeviceQueryOSVERSION,
         testDeviceQueryDISPLAY,
         testDeviceQueryCaseSensitive,
-    ]).run();
+    ]).run().worker(function(err, test) {
+        if (!err) {
+            DeviceQuery = DeviceQuery_;
+            new Test(test).run().worker();
+        }
+    });
 
 function testDevice(next) {
     var spec = Device( Spec() );
@@ -19,11 +24,11 @@ function testDeviceQueryCPU(next) {
     var queryString = "CPU.TYPE = ARM; CPU.CLOCK >= 2.2";
     var id = DeviceQuery(queryString);
 
-    if ( id.join(",") === "MSM8974" ) {
+    if ( id.indexOf("MSM8974") >= 0 ) {
         console.log("testDeviceQueryCPU ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
-        console.log("testDeviceQueryCPU ng. query: " + queryString + ", result: " + id.join(","));
+        console.error("testDeviceQueryCPU ng. query: " + queryString + ", result: " + id.join(","));
         next && next.miss();
     }
 }
@@ -32,11 +37,12 @@ function testDeviceQueryGPU(next) {
     var queryString = "GPU.TYPE=Adreno; GPU.ID=320";
     var id = DeviceQuery(queryString);
 
-    if ( id.join(",") === "APQ8064T,APQ8064" ) {
+    if ( id.indexOf("APQ8064T") >= 0 &&
+         id.indexOf("APQ8064")  >= 0 ) {
         console.log("testDeviceQueryGPU ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
-        console.log("testDeviceQueryGPU ng. query: " + queryString + ", result: " + id.join(","));
+        console.error("testDeviceQueryGPU ng. query: " + queryString + ", result: " + id.join(","));
         next && next.miss();
     }
 }
@@ -45,11 +51,12 @@ function testDeviceQueryDEVICE(next) {
     var queryString = "DEVICE.BRAND=Google; DEVICE.SOC=MSM8974";
     var id = DeviceQuery(queryString);
 
-    if ( id.join(",") === "Nexus 5,EM01L" ) {
+    if ( id.indexOf("Nexus 5") >= 0 &&
+         id.indexOf("EM01L")   >= 0 ) {
         console.log("testDeviceQueryDEVICE ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
-        console.log("testDeviceQueryDEVICE ng. query: " + queryString + ", result: " + id.join(","));
+        console.error("testDeviceQueryDEVICE ng. query: " + queryString + ", result: " + id.join(","));
         next && next.miss();
     }
 }
@@ -62,7 +69,7 @@ function testDeviceQueryOSVERSION(next) {
         console.log("testDeviceQueryOSVERSION ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
-        console.log("testDeviceQueryOSVERSION ng. query: " + queryString + ", result: " + id.join(","));
+        console.error("testDeviceQueryOSVERSION ng. query: " + queryString + ", result: " + id.join(","));
         next && next.miss();
     }
 }
@@ -75,7 +82,7 @@ function testDeviceQueryDISPLAY(next) {
         console.log("testDeviceQueryDISPLAY ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
-        console.log("testDeviceQueryDISPLAY ng. query: " + queryString + ", result: " + id.join(","));
+        console.error("testDeviceQueryDISPLAY ng. query: " + queryString + ", result: " + id.join(","));
         next && next.miss();
     }
 }
@@ -89,7 +96,7 @@ function testDeviceQueryCaseSensitive(next) {
         console.log("testDeviceQueryCaseSensitive ok.");
         next && next.pass();
     } else {
-        console.log("testDeviceQueryCaseSensitive ng.");
+        console.error("testDeviceQueryCaseSensitive ng.");
         next && next.miss();
     }
 }

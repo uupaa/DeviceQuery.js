@@ -1,24 +1,28 @@
 {
   "name":           "uupaa.devicequery.js",
-  "version":        "0.8.0",
+  "version":        "0.8.1",
   "description":    "Device query function.",
   "url":            "https://github.com/uupaa/DeviceQuery.js",
   "keywords":       ["device", "spec", "query", "util", "uupaa"],
-  "author":         "uupaa <uupaa.js@gmail.com>",
-  "license":        "MIT",
-  "repository":     { "type": "git", "url": "https://github.com/uupaa/DeviceQuery.js.git" },
-  "contributors":   [],
+  "repository": {
+    "type":         "git",
+    "url":          "https://github.com/uupaa/DeviceQuery.js.git"
+  },
+  "scripts": {
+    "start":        "node node_modules/uupaa.minify.js --keep --output ./lib/DeviceQuery.min.js ./lib/DeviceQuery.js",
+    "test":         "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js; open test/index.html"
+  },
   "devDependencies": {
-    "uupaa.help.js": ">= 0.8.1",
-    "uupaa.test.js": ">= 0.8.0",
-    "uupaa.task.js": ">= 0.8.0",
-    "uupaa.spec.js": ">= 0.8.0",
-    "uupaa.device.js": ">= 0.8.0"
+    "uupaa.help.js":    "",
+    "uupaa.test.js":    "",
+    "uupaa.task.js":    "",
+    "uupaa.minify.js":  "",
+    "uupaa.spec.js":    "",
+    "uupaa.device.js":  ""
   },
   "lib":            "./lib/",
-  "main":           "index.js",
-  "scripts": {
-    "start":        "npm install",
-    "test":         "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js; open test/index.html"
-  }
+  "main":           "./index.js",
+  "author":         "uupaa <uupaa.js@gmail.com>",
+  "license":        "MIT",
+  "contributors":   []
 }
