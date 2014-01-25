@@ -19,18 +19,17 @@ $ npm install
 
 ```sh
 $ npm test
-
-    > uupaa.devicequery.js@0.8.0 test /Users/username/path/DeviceQuery.js
-    > NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js; open test/index.html
 ```
 
 # Minify
 
 ```sh
+$ brew install closure-compiler
 $ npm start
 
   or
 
+$ brew install closure-compiler
 $ node node_modules/uupaa.minify.js --keep --output ./lib/DeviceQuery.min.js ./lib/DeviceQuery.js
 ```
 

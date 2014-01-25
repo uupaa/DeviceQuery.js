@@ -7,7 +7,7 @@ new Test().add([
         testDeviceQueryDISPLAY,
         testDeviceQueryCaseSensitive,
     ]).run().worker(function(err, test) {
-        if (!err) {
+        if (!err && typeof DeviceQuery_ !== "undefined") {
             DeviceQuery = DeviceQuery_;
             new Test(test).run().worker();
         }
