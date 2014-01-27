@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.devicequery.js",
-  "version":        "0.8.4",
+  "version":        "0.8.5",
   "description":    "Device query function.",
   "url":            "https://github.com/uupaa/DeviceQuery.js",
   "keywords":       ["device", "spec", "query", "util", "uupaa"],
@@ -11,6 +11,10 @@
   "scripts": {
     "start":        "node node_modules/uupaa.minify.js --keep --output ./lib/DeviceQuery.min.js ./lib/DeviceQuery.js",
     "test":         "NODE_ENV=production NODE_PATH=lib node --harmony test/index.node.js; open test/index.html"
+  },
+  "dependencies": {
+    "uupaa.spec.js":    "",
+    "uupaa.device.js":  ""
   },
   "devDependencies": {
     "uupaa.help.js":    "",
