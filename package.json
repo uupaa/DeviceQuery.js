@@ -1,6 +1,6 @@
 {
   "name":           "uupaa.devicequery.js",
-  "version":        "0.8.5",
+  "version":        "0.8.6",
   "description":    "Device query function.",
   "url":            "https://github.com/uupaa/DeviceQuery.js",
   "keywords":       ["device", "spec", "query", "util", "uupaa"],
@@ -17,6 +17,7 @@
     "uupaa.device.js":  ""
   },
   "devDependencies": {
+    "uupaa.mappedarray.js": "",
     "uupaa.help.js":    "",
     "uupaa.test.js":    "",
     "uupaa.task.js":    "",
