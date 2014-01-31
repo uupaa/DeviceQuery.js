@@ -6,10 +6,14 @@ new Test().add([
         testDeviceQueryOSVERSION,
         testDeviceQueryDISPLAY,
         testDeviceQueryCaseSensitive,
+        testDeviceQuerySOCAndDeviceID,
     ]).run().worker(function(err, test) {
-        if (!err && typeof DeviceQuery_ !== "undefined") {
-            DeviceQuery = DeviceQuery_;
-            new Test(test).run().worker();
+        if (!err) {
+            var undo = Test.swap(DeviceQuery, DeviceQuery_);
+
+            new Test(test).run(function(err, test) {
+                undo = Test.undo(undo);
+            });
         }
     });
 
@@ -100,4 +104,19 @@ function testDeviceQueryCaseSensitive(next) {
         next && next.miss();
     }
 }
+
+function testDeviceQuerySOCAndDeviceID(next) {
+    var soc = DeviceQuery("DEVICE.SOC=SHL24"); // "MSM8974" と一致する全ての端末IDを列挙
+
+    if ( soc.length ) {
+        console.log("testDeviceQuerySOCAndDeviceID ok.");
+        next && next.pass();
+    } else {
+        console.error("testDeviceQuerySOCAndDeviceID ng.");
+        next && next.miss();
+    }
+}
+
+
+
 
