@@ -7,6 +7,7 @@ new Test().add([
         testDeviceQueryDISPLAY,
         testDeviceQueryCaseSensitive,
         testDeviceQuerySOCAndDeviceID,
+        testDeviceQueryDeviceID,
     ]).run().worker(function(err, test) {
         if (!err) {
             var undo = Test.swap(DeviceQuery, DeviceQuery_);
@@ -55,8 +56,7 @@ function testDeviceQueryDEVICE(next) {
     var queryString = "DEVICE.BRAND=Google; DEVICE.SOC=MSM8974";
     var id = DeviceQuery(queryString);
 
-    if ( id.indexOf("Nexus 5") >= 0 &&
-         id.indexOf("EM01L")   >= 0 ) {
+    if ( id.indexOf("Nexus 5") >= 0 ) {
         console.log("testDeviceQueryDEVICE ok. query: " + queryString + ", result: " + id.join(","));
         next && next.pass();
     } else {
@@ -106,7 +106,7 @@ function testDeviceQueryCaseSensitive(next) {
 }
 
 function testDeviceQuerySOCAndDeviceID(next) {
-    var soc = DeviceQuery("DEVICE.SOC=SHL24"); // "MSM8974" と一致する全ての端末IDを列挙
+    var soc = DeviceQuery("DEVICE.SOC=SHL24");
 
     if ( soc.length ) {
         console.log("testDeviceQuerySOCAndDeviceID ok.");
@@ -117,6 +117,23 @@ function testDeviceQuerySOCAndDeviceID(next) {
     }
 }
 
+function testDeviceQueryDeviceID(next) {
+    var id = DeviceQuery("OS.TYPE=SHL24;OS.VERSION.PRE>=SHL24;DEVICE.SOC=SHL24;DEVICE.BRAND=SHL24");
+    // id: ["SH-01F", "SH-01FDQ", "SH-02F", "SHT22", "SHL24", "SHL23", "DM016SH", "SBM302SH"]
 
-
+    if ( id.indexOf("SH-01F")   >= 0 &&
+         id.indexOf("SH-01FDQ") >= 0 &&
+         id.indexOf("SH-02F")   >= 0 &&
+         id.indexOf("SHT22")    >= 0 &&
+         id.indexOf("SHL24")    >= 0 &&
+         id.indexOf("SHL23")    >= 0 &&
+         id.indexOf("DM016SH")  >= 0 &&
+         id.indexOf("SBM302SH") >= 0) {
+        console.log("testDeviceQueryDeviceID ok.");
+        next && next.pass();
+    } else {
+        console.error("testDeviceQueryDeviceID ng.");
+        next && next.miss();
+    }
+}
 

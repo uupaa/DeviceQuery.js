@@ -5,7 +5,11 @@ DeviceQuery.js is Device query function.
 
 # API Document
 
-https://github.com/uupaa/DeviceQuery.js/wiki/DeviceQuery
+- https://github.com/uupaa/Spec.js/wiki/Spec
+- https://github.com/uupaa/Device.js/wiki/Device
+- https://github.com/uupaa/DeviceQuery.js/wiki/DeviceQuery
+- https://github.com/uupaa/Browser.js/wiki/Browser
+- https://github.com/uupaa/OS.js/wiki/OS
 
 # Install, Setup modules
 
